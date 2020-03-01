@@ -28,6 +28,7 @@ class MyHomePage extends StatelessWidget {
           children: [
             Container(
               height: 70,
+              color: Colors.red,
               child: Center(
                 child: Text(
                   '(x)に入る単語を答えよ。',
@@ -37,6 +38,7 @@ class MyHomePage extends StatelessWidget {
             ),
             Container(
               height: 70,
+              color: Colors.green,
               child: Center(
                 child: Text(
                   'Q1',
@@ -45,6 +47,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Container(
+              color: Colors.yellow,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Center(
