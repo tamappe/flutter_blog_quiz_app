@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app/utils/constant.dart';
+import 'package:flutter_quiz_app/widget/answer_button.dart';
+import 'package:flutter_quiz_app/widget/question_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +18,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  /// 問題文のindex
+  var _questionIndex = 0;
+
+  var _questions = [
+    {
+      'question': 'The weather in Merizo is very (x) year-round, though there are showers almost daily from December through March.',
+      'a': 'agreeable',
+      'b': 'agree',
+      'c': 'agreement',
+      'd': 'agreeably',
+      'correctAnswer': 'A'
+    },
+    {
+      'question': '(x) for the competition should be submitted by November 28 at the latest.',
+      'a': 'Enter',
+      'b': 'Entered',
+      'c': 'Entering',
+      'd': 'Entries',
+      'correctAnswer': 'D'
+    }
+  ];
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +64,7 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: 70,
+              height: Constant().questionAreaHeight,
               color: Colors.red,
               child: Center(
                 child: Text(
@@ -37,65 +74,26 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Container(
-              height: 70,
+              height: Constant().questionAreaHeight,
               color: Colors.green,
               child: Center(
                 child: Text(
-                  'Q1',
+                  'Q${_questionIndex + 1}',
                   style: TextStyle(fontSize: 18),
                 ),
               ),
             ),
-            Container(
-              color: Colors.yellow,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                  child: Text(
-                    'The weather in Merizo is very (x) year-round, though there are showers almost daily from December through March.',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
+            QuestionView(_questionIndex, _questions),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(50.0, 30.0, 50.0, 50.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(
-                        width: double.infinity,
-                        height: 50,
-                      child: RaisedButton(
-                        child: Text('agreeable'),
-                        onPressed: null,
-                      )
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: RaisedButton(
-                        child: Text('agree'),
-                        onPressed: null,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: RaisedButton(
-                        child: Text('agreement'),
-                        onPressed: null,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: RaisedButton(
-                        child: Text('agreeably'),
-                        onPressed: null,
-                      ),
-                    ),
+                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'a'),
+                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'b'),
+                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'c'),
+                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'd'),
                   ],
                 ),
               ),
