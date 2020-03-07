@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app/utils/hex_color.dart';
 import '../utils/constants.dart';
 
 class AnswerButton extends StatelessWidget {
@@ -22,7 +23,7 @@ class AnswerButton extends StatelessWidget {
           width: double.infinity,
           height: Constants().answerButtonHeight,
           child: RaisedButton(
-            color: Color(0xffD6D7D7),
+            color: HexColor('#D6D7D7'),
             child: Text(questions[questionIndex][keyString]),
             onPressed: answerQuestion,
           )),
