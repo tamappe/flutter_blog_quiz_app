@@ -48,6 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   ];
 
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('文法問題'),
       ),
       body: Center(
-        child: Column(
+        child: _questionIndex < _questions.length ? Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
@@ -88,22 +94,38 @@ class _MyHomePageState extends State<MyHomePage> {
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
+                        answerQuestion: _answerQuestion,
                         keyString: 'a'),
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
+                        answerQuestion: _answerQuestion,
                         keyString: 'b'),
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
+                        answerQuestion: _answerQuestion,
                         keyString: 'c'),
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
+                        answerQuestion: _answerQuestion,
                         keyString: 'd'),
                   ],
                 ),
               ),
+            )
+          ],
+        ) : Column(
+          children: [
+            Text('問題が終了しました!'),
+            RaisedButton(
+              child: Text('リセットする'),
+              onPressed: () {
+                setState(() {
+                  _questionIndex = 0;
+                });
+              },
             )
           ],
         ),
