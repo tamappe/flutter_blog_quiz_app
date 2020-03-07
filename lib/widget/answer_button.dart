@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/constant.dart';
+import '../utils/constants.dart';
 
 class AnswerButton extends StatelessWidget {
   final int questionIndex;
@@ -7,18 +7,18 @@ class AnswerButton extends StatelessWidget {
   final Function answerQuestion;
   final String keyString;
 
-  AnswerButton(
-      this.questions,
-      this.questionIndex,
-      this.answerQuestion,
-      this.keyString
-      );
+  AnswerButton({
+    @required this.questionIndex,
+    @required this.questions,
+    @required this.answerQuestion,
+    @required this.keyString
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: double.infinity,
-        height: Constant().answerButtonHeight,
+        height: Constants().answerButtonHeight,
         child: RaisedButton(
           child: Text(questions[questionIndex][keyString]),
           onPressed: answerQuestion,

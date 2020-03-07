@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class QuestionView extends StatelessWidget {
+  /// 問題文のidかindexを渡す想定
   final int questionIndex;
+  /// 問題文オブジェクト
   final List<Map<String, Object>> questions;
 
-  QuestionView(this.questionIndex, this.questions);
+  QuestionView({@required this.questionIndex, @required this.questions});
 
   @override
   Widget build(BuildContext context) {

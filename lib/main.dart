@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz_app/utils/constant.dart';
-import 'package:flutter_quiz_app/widget/answer_button.dart';
-import 'package:flutter_quiz_app/widget/question_view.dart';
+import './utils/constants.dart';
+import './widget/answer_button.dart';
+import './widget/question_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -30,7 +29,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var _questions = [
     {
-      'question': 'The weather in Merizo is very (x) year-round, though there are showers almost daily from December through March.',
+      'question':
+          'The weather in Merizo is very (x) year-round, though there are showers almost daily from December through March.',
       'a': 'agreeable',
       'b': 'agree',
       'c': 'agreement',
@@ -38,7 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
       'correctAnswer': 'A'
     },
     {
-      'question': '(x) for the competition should be submitted by November 28 at the latest.',
+      'question':
+          '(x) for the competition should be submitted by November 28 at the latest.',
       'a': 'Enter',
       'b': 'Entered',
       'c': 'Entering',
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: Constant().questionAreaHeight,
+              height: Constants().questionAreaHeight,
               color: Colors.red,
               child: Center(
                 child: Text(
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Container(
-              height: Constant().questionAreaHeight,
+              height: Constants().questionAreaHeight,
               color: Colors.green,
               child: Center(
                 child: Text(
@@ -83,17 +84,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            QuestionView(_questionIndex, _questions),
+            QuestionView(questionIndex: _questionIndex, questions: _questions),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(50.0, 30.0, 50.0, 50.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'a'),
-                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'b'),
-                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'c'),
-                    AnswerButton(_questions, _questionIndex, _answerQuestion, 'd'),
+                    AnswerButton(
+                        questions: _questions,
+                        questionIndex: _questionIndex,
+                        keyString: 'a'),
+                    AnswerButton(
+                        questions: _questions,
+                        questionIndex: _questionIndex,
+                        keyString: 'b'),
+                    AnswerButton(
+                        questions: _questions,
+                        questionIndex: _questionIndex,
+                        keyString: 'c'),
+                    AnswerButton(
+                        questions: _questions,
+                        questionIndex: _questionIndex,
+                        keyString: 'd'),
                   ],
                 ),
               ),
