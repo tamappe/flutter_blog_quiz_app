@@ -48,12 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   ];
 
-  void _answerQuestion() {
-    setState(() {
-      _questionIndex++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

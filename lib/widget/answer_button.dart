@@ -4,14 +4,12 @@ import '../utils/constants.dart';
 class AnswerButton extends StatelessWidget {
   final int questionIndex;
   final List<Map<String, Object>> questions;
-  final Function answerQuestion;
   final String keyString;
 
   AnswerButton({
-    @required this.questionIndex,
-    @required this.questions,
-    @required this.answerQuestion,
-    @required this.keyString
+    this.questionIndex,
+    this.questions,
+    this.keyString
   });
 
   @override
@@ -21,7 +19,7 @@ class AnswerButton extends StatelessWidget {
         height: Constants().answerButtonHeight,
         child: RaisedButton(
           child: Text(questions[questionIndex][keyString]),
-          onPressed: answerQuestion,
+          onPressed: null,
         ));
   }
 }
