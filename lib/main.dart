@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app/widget/result_page.dart';
 import './utils/constants.dart';
 import './widget/answer_button.dart';
 import './widget/question_view.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -51,6 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _answerQuestion() {
     setState(() {
       _questionIndex++;
+    });
+  }
+
+  void _resetIndex() {
+    setState(() {
+      _questionIndex = 0;
     });
   }
 
@@ -116,19 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             )
           ],
-        ) : Column(
-          children: [
-            Text('問題が終了しました!'),
-            RaisedButton(
-              child: Text('リセットする'),
-              onPressed: () {
-                setState(() {
-                  _questionIndex = 0;
-                });
-              },
-            )
-          ],
-        ),
+        ) : ResultPage(_resetIndex),
       ),
     );
   }
