@@ -11,7 +11,6 @@ class QuestionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.yellow,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(

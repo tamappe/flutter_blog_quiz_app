@@ -6,12 +6,14 @@ class AnswerButton extends StatelessWidget {
   final int questionIndex;
   final List<Map<String, Object>> questions;
   final Function answerQuestion;
+  final Function incrementCorrect;
   final String keyString;
 
   AnswerButton({
     this.questionIndex,
     this.questions,
     this.answerQuestion,
+    this.incrementCorrect,
     this.keyString
   });
 
@@ -25,7 +27,12 @@ class AnswerButton extends StatelessWidget {
           child: RaisedButton(
             color: HexColor('#D6D7D7'),
             child: Text(questions[questionIndex][keyString]),
-            onPressed: answerQuestion,
+            onPressed: () {
+              if (keyString.toUpperCase() == questions[questionIndex]["correctAnswer"].toString()) {
+                incrementCorrect();
+              }
+              answerQuestion();
+            },
           )),
     );
   }

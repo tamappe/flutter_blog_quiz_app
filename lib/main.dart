@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: "Hiragino Sans"
       ),
       home: MyHomePage(),
     );
@@ -28,7 +29,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   /// 問題文のindex
   var _questionIndex = 0;
-
+  /// 正答数
+  var _correctAnswerCount = 0;
+  /// 問題
   var _questions = [
     {
       'question':
@@ -56,9 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _incrementCorrectIndex() {
+    setState(() {
+      _correctAnswerCount += 1;
+    });
+  }
+
   void _resetIndex() {
     setState(() {
       _questionIndex = 0;
+      _correctAnswerCount = 0;
     });
   }
 
@@ -74,7 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Container(
               height: Constants().questionAreaHeight,
-              color: Colors.red,
               child: Center(
                 child: Text(
                   '(x)に入る単語を答えよ。',
@@ -84,7 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
               height: Constants().questionAreaHeight,
-              color: Colors.green,
               child: Center(
                 child: Text(
                   'Q${_questionIndex + 1}',
@@ -103,28 +111,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         questions: _questions,
                         questionIndex: _questionIndex,
                         answerQuestion: _answerQuestion,
+                        incrementCorrect: _incrementCorrectIndex,
                         keyString: 'a'),
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
                         answerQuestion: _answerQuestion,
+                        incrementCorrect: _incrementCorrectIndex,
                         keyString: 'b'),
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
                         answerQuestion: _answerQuestion,
+                        incrementCorrect: _incrementCorrectIndex,
                         keyString: 'c'),
                     AnswerButton(
                         questions: _questions,
                         questionIndex: _questionIndex,
                         answerQuestion: _answerQuestion,
+                        incrementCorrect: _incrementCorrectIndex,
                         keyString: 'd'),
                   ],
                 ),
               ),
             )
           ],
-        ) : ResultPage(_resetIndex),
+        ) : ResultPage(_resetIndex, _questions.length, _correctAnswerCount),
       ),
     );
   }

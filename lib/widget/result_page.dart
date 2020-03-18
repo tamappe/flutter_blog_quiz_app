@@ -30,7 +30,7 @@ class ResultPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(20),
           child: Text(
-            '正答数: 1 / 2',
+            '正答数: $correctAnswerCount / $questionCount',
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
         ),
